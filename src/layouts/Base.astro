@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+import Mark from '../components/Mark.astro';
+import { url } from '../utils';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: string;
+}
+
+const { title, description = site.description, current = '' } = Astro.props;
+const pageTitle = title
+  ? `${title} · ${site.shortName}`
+  : `${site.fullName} (${site.shortName})`;
+
+const nav = [
+  { key: 'home', label: 'Home', href: url('/') },
+  { key: 'research', label: 'Research', href: url('/research/') },
+  { key: 'people', label: 'People', href: url('/people/') },
+  { key: 'publications', label: 'Publications', href: url('/publications/') },
+  { key: 'news', label: 'News', href: url('/news/') },
+  { key: 'join', label: 'Join', href: url('/join/') },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Hepta+Slab:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site">
+      <div class="container bar">
+        <a class="brand" href={url('/')}>
+          <Mark size={48} />
+          <span class="brand-text">
+            <strong>{site.shortName}</strong>
+            <small>{site.fullName}</small>
+          </span>
+        </a>
+        <nav aria-label="Main">
+          <ul>
+            {
+              nav.map((n) => (
+                <li>
+                  <a href={n.href} aria-current={current === n.key ? 'page' : undefined}>
+                    {n.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site">
+      <div class="container foot">
+        <p>
+          © {site.year} {site.pi} · {site.fullName} · {site.affiliation}
+        </p>
+        <p>
+          <a href={site.personalSite}>Personal website</a>
+          {site.scholar && <span> · <a href={site.scholar}>Google Scholar</a></span>}
+          · <a href={`mailto:${site.email}`}>Email</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

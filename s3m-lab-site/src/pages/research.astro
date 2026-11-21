@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../utils';
+import { questions, stigmaTopics, wellbeingTopics, methods, howWeWork } from '../data/research';
+---
+
+<Base title="Research" current="research" description="Research areas of the Stigma Science & Social Medicine Lab: stigma, mental health, quality of life, and models of care.">
+  <section class="page-head">
+    <div class="container">
+      <h1>Research</h1>
+      <p>
+        Social medicine asks how social conditions shape health. Stigma science asks how stigma can
+        be measured, explained, and changed. We bring the two together to improve life with chronic
+        illness.
+      </p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Guiding questions</h2>
+      <div class="grid three">
+        {
+          questions.map((q) => (
+            <article class="card">
+              <span class="tag">{q.tag}</span>
+              <h3>{q.title}</h3>
+              <p>{q.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container">
+      <h2>Stigma</h2>
+      <div class="grid three">
+        {
+          stigmaTopics.map((t) => (
+            <article class="card">
+              <h3>{t.title}</h3>
+              <p>{t.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Mental health and wellbeing</h2>
+      <p class="intro">
+        We look beyond viral suppression to the broader health, psychosocial, and quality-of-life
+        outcomes that matter to people living with chronic illness.
+      </p>
+      <ul class="chips">
+        {wellbeingTopics.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container">
+      <h2>How we work</h2>
+      <div class="grid two">
+        {
+          howWeWork.map((h) => (
+            <article class="card">
+              <h3>{h.title}</h3>
+              <p>{h.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <h3 style="margin-top: 2rem">Methods</h3>
+      <ul class="chips">
+        {methods.map((m) => <li>{m}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>What we mean</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>Stigma science</h3>
+          <p>
+            We treat stigma as a process that can be measured, explained, and changed, not only as a
+            matter of language. Our working view is that stigma is, at its root, fear: the fear
+            others hold and the fear people carry within themselves.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Social medicine</h3>
+          <p>
+            Social medicine is a tradition of scholarship and practice that treats health and illness
+            as inseparable from the social conditions in which people live. It asks how laws,
+            economies, institutions, and relationships shape health, and how care can change them.
+          </p>
+        </article>
+      </div>
+      <p style="margin-top: 2rem">
+        Interested in working together? <a href={url('/join/')}>Get in touch</a>.
+      </p>
+    </div>
+  </section>
+</Base>

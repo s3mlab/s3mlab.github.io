@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Cube from '../components/Cube.astro';
+import { url } from '../utils';
+import { site } from '../data/site';
+import { questionScope, questions } from '../data/research';
+
+---
+
+<Base current="home">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="kicker">{site.fullName}</p>
+        <h1>{site.focus}</h1>
+        <p class="lead">
+          We center stigma and the life course to understand how people live well with HIV and
+          other chronic infectious diseases, and how care can free them from fear.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href={url('/research/')}>Our research</a>
+          <a class="btn ghost" href={url('/join/')}>Join or collaborate</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <Cube />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="motto"
+    style={`background-image: linear-gradient(rgba(22, 58, 48, 0.62), rgba(22, 58, 48, 0.62)), url(${url('/images/campus-sunset.jpg')});`}
+  >
+    <div class="container">
+      <p class="motto-text">{site.motto}</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Our work is guided by three questions</h2>
+      <div class="grid three">
+        {
+          questions.map((q) => (
+            <article class="card">
+              <span class="tag">{q.tag}</span>
+              <h3>{q.title}</h3>
+              <p class="scope">{questionScope}</p>
+              <ul class="qs">
+                {q.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

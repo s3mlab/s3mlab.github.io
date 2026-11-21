@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../utils';
+import { site } from '../data/site';
+import { pi, students, collaborators } from '../data/people';
+---
+
+<Base title="People" current="people" description="The people of the Stigma Science & Social Medicine Lab.">
+  <section class="page-head">
+    <div class="container">
+      <h1>People</h1>
+      <p>A small, growing group working with people living with HIV and chronic illness.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="person">
+        <div class="avatar" aria-hidden="true">{pi.initials}</div>
+        <div>
+          <h2>{pi.name}</h2>
+          <p class="role">{pi.role} · {pi.title}</p>
+          {pi.bio.map((p) => <p>{p}</p>)}
+          <ul class="links">
+            <li><a href={site.personalSite}>Personal website</a></li>
+            <li><a href={site.cv}>CV</a></li>
+            {site.scholar && <li><a href={site.scholar}>Google Scholar</a></li>}
+            <li><a href={`mailto:${site.email}`}>Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container">
+      <h2>Students</h2>
+      {
+        students.length === 0 ? (
+          <p class="empty">
+            We are building the lab. If you are interested in joining, see <a href={url('/join/')}>Join</a>.
+          </p>
+        ) : (
+          <div class="grid three">
+            {students.map((s) => (
+              <article class="card">
+                <h3>{s.name}</h3>
+                <p class="role">{s.role}</p>
+                {s.note && <p>{s.note}</p>}
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Collaborators and community partners</h2>
+      {
+        collaborators.length === 0 ? (
+          <p class="empty">Partners will be listed here as our collaborations grow.</p>
+        ) : (
+          <div class="grid three">
+            {collaborators.map((c) => (
+              <article class="card">
+                <h3>{c.name}</h3>
+                <p class="role">{c.role}</p>
+                {c.note && <p>{c.note}</p>}
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>

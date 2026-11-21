@@ -1,0 +1,35 @@
+---
+// The round S³M mark: an open ring (liberation) around the lab's initials.
+interface Props {
+  size?: number;
+}
+const { size = 120 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 200 200"
+  role="img"
+  aria-label="S cubed M lab mark"
+>
+  <circle
+    cx="100"
+    cy="100"
+    r="94"
+    fill="none"
+    stroke="#E8B04A"
+    stroke-width="4"
+    stroke-dasharray="545 46"
+    stroke-linecap="round"
+    transform="rotate(-70 100 100)"></circle>
+  <text
+    x="100"
+    y="124"
+    text-anchor="middle"
+    font-family="Fraunces, Georgia, serif"
+    font-weight="700"
+    font-size="74"
+    fill="#F4EFE3"
+  >S<tspan dy="-28" font-size="34" fill="#E8B04A">3</tspan><tspan dy="28">M</tspan></text>
+</svg>

@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { news } from '../data/news';
+
+const items = [...news].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<Base title="News" current="news" description="News from the Stigma Science & Social Medicine Lab.">
+  <section class="page-head">
+    <div class="container">
+      <h1>News</h1>
+      <p>Updates on our research, talks, and community work.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <ul class="list">
+        {
+          items.map((n) => (
+            <li>
+              <p class="date">{n.date}</p>
+              <h3>{n.title}</h3>
+              <p>{n.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

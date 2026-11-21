@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Join" current="join" description="Join or collaborate with the Stigma Science & Social Medicine Lab.">
+  <section class="page-head">
+    <div class="container">
+      <h1>Join or collaborate</h1>
+      <p>We welcome students, community partners, and collaborators who share our goals.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="grid three">
+        <article class="card">
+          <span class="tag">Students</span>
+          <h3>Work with us</h3>
+          <p>
+            If you are interested in stigma, chronic illness, and social medicine, send a short note
+            about your interests and your CV.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tag">Community</span>
+          <h3>People living with HIV</h3>
+          <p>
+            We aim to work with people living with HIV as partners in research and service design.
+            If you would like to be involved, we would love to hear from you.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tag">Collaborators</span>
+          <h3>Researchers and organizations</h3>
+          <p>
+            We collaborate with researchers, clinics, and community organizations working on stigma
+            and chronic illness care.
+          </p>
+        </article>
+      </div>
+
+      <h2 style="margin-top: 3rem">Contact</h2>
+      <p>
+        {site.pi}<br />
+        {site.affiliation}<br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+      <p>
+        <a class="btn solid" href={`mailto:${site.email}`}>Send an email</a>
+      </p>
+    </div>
+  </section>
+</Base>

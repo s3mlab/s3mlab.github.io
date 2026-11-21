@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import Cube from '../components/Cube.astro';
+import { url } from '../utils';
+import { site } from '../data/site';
+import { news } from '../data/news';
+import { questions, layers } from '../data/research';
+
+const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+---
+
+<Base current="home">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="kicker">{site.fullName}</p>
+        <h1>{site.tagline}</h1>
+        <p class="lead">
+          We study how stigma lives in bodies, laws, economies, and communities, and how care can
+          free people from it. Our work centers people living with HIV and extends to other chronic
+          conditions.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href={url('/research/')}>Our research</a>
+          <a class="btn ghost" href={url('/join/')}>Join or collaborate</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <Cube />
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Our work is guided by three questions</h2>
+      <div class="grid three">
+        {
+          questions.map((q) => (
+            <article class="card">
+              <span class="tag">{q.tag}</span>
+              <h3>{q.title}</h3>
+              <p>{q.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container">
+      <h2>Liberation from fear, on four levels</h2>
+      <p class="intro">
+        Stigma is more than language. We see it as fear, felt by others and carried within ourselves,
+        so lasting change has to reach beyond words to the places where fear takes hold.
+      </p>
+      <div class="grid four">
+        {
+          layers.map((l) => (
+            <article class="card">
+              <span class="tag">{l.tag}</span>
+              <h3>{l.title}</h3>
+              <p>{l.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>Latest news</h2>
+      <ul class="list">
+        {
+          latest.map((n) => (
+            <li>
+              <p class="date">{n.date}</p>
+              <h3>{n.title}</h3>
+              <p>{n.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p><a href={url('/news/')}>All news</a></p>
+    </div>
+  </section>
+</Base>

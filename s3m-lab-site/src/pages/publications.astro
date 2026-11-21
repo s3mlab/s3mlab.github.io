@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import { publications } from '../data/publications';
+import type { Publication } from '../data/publications';
+
+const byYear = new Map<number, Publication[]>();
+for (const p of publications) {
+  const list = byYear.get(p.year) ?? [];
+  list.push(p);
+  byYear.set(p.year, list);
+}
+const groups = [...byYear.keys()]
+  .sort((a, b) => b - a)
+  .map((year) => ({ year, items: byYear.get(year) ?? [] }));
+---
+
+<Base title="Publications" current="publications" description="Publications from the Stigma Science & Social Medicine Lab.">
+  <section class="page-head">
+    <div class="container">
+      <h1>Publications</h1>
+      <p>Peer-reviewed articles, reports, and other scholarship from the lab.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      {
+        groups.length === 0 ? (
+          <p class="empty">
+            Publications will be listed here soon.
+            {site.scholar && (
+              <span>
+                {' '}In the meantime, see <a href={site.scholar}>Google Scholar</a>.
+              </span>
+            )}
+          </p>
+        ) : (
+          groups.map((g) => (
+            <div>
+              <h2>{g.year}</h2>
+              <ul class="list">
+                {g.items.map((p) => (
+                  <li>
+                    <h3>{p.link ? <a href={p.link}>{p.title}</a> : p.title}</h3>
+                    <p>{p.authors}. <em>{p.venue}</em></p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        )
+      }
+    </div>
+  </section>
+</Base>
