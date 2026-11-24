@@ -5,5 +5,5 @@ import { defineConfig } from 'astro/config';
 //  - Custom domain:                                       site: 'https://yourlab.org'          (no "base")
 //  - Project site (repo named something else):            also add  base: '/repo-name'
 export default defineConfig({
-  site: 'https://s3mlab.github.io',
+  site: 'https://YOUR-ORG.github.io',
 });

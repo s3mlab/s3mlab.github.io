@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import Mark from '../components/Mark.astro';
 import { url } from '../utils';
 import { site } from '../data/site';
 
@@ -46,11 +45,7 @@ const nav = [
     <header class="site">
       <div class="container bar">
         <a class="brand" href={url('/')}>
-          <Mark size={48} />
-          <span class="brand-text">
-            <strong>{site.shortName}</strong>
-            <small>{site.fullName}</small>
-          </span>
+          <span class="brand-box">{site.shortName}</span>
         </a>
         <nav aria-label="Main">
           <ul>

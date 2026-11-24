@@ -5,6 +5,7 @@ import { url } from '../utils';
 import { site } from '../data/site';
 import { questionScope, questions } from '../data/research';
 
+const [focusA, focusB] = site.focus.split(' and ');
 ---
 
 <Base current="home">
@@ -12,7 +13,7 @@ import { questionScope, questions } from '../data/research';
     <div class="container hero-grid">
       <div>
         <p class="kicker">{site.fullName}</p>
-        <h1>{site.focus}</h1>
+        <h1>{focusA} &amp; {focusB}</h1>
         <p class="lead">
           We center stigma and the life course to understand how people live well with HIV and
           other chronic infectious diseases, and how care can free them from fear.
